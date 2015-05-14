@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Workshop slides</title>
+
+		<meta name="description" content="An introduction to Python for Coding">
+		<meta name="author" content="Wayne ecatur">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>ChIP-Seq Hands-on Workshop</h1>
+					<h3>March 14th, 2015</h3>
+					<p>
+						<small>Created by <a href="http://proteopedia.org/wiki/index.php/User:Wayne_Decatur">Wayne Decatur</a> for Feng Lab Group meeting</small>
+					</p>
+				</section>
+
+				<section data-markdown>
+					<script type="text/template">
+						## Session Infrastructure
+						[the main portal is here](http://bit.ly/FengMayLM)
+
+						Easy to arrive at two ways:
+
+						- write down `http://bit.ly/FengMayLM`
+						- search for `Wayne Decatur proteopedia`, follow github and look for repo for Feng lab group meeting in May (titled 'may2015feng_gr_m' to stant for 'May 2015 Feng Lab group meeting')
+
+					</script>
+				</section>
+
+				<!--
+				<section data-transition="slide" data-background="#4d7e65" data-background-transition="zoom">
+					<img data-src="http://image.slidesharecdn.com/2014-bosc-keynote-140711070550-phpapp01/95/2014-bosckeynote-5-638.jpg" alt="Datapocalypse">
+					<br>
+					borrowed from <a href="https://www.youtube.com/watch?v=uwsjwMO-TEA">A retrospective from the Year 2039 given by Titus Brown</a>
+
+				</section>
+			-->
+
+
+
+				<section data-markdown>
+					<script type="text/template">
+						##General Overview of Workshop
+
+
+							Get computer with software and data up and running
+								|
+								V
+							Map the appropriate reads
+								|
+								V
+							Call peaks with MACS
+								|
+								V
+							Examine peaks relative to known genomic features using CEAS
+								|
+								V
+							Motif discovery with MEME
+
+					</script>
+				</section>
+
+				<section data-markdown>
+					<script type="text/template">
+						##More Detailed Overview of Workshop Pipeline
+
+
+							Get proper resources for working on genome of interest
+								|
+								V
+							Identify proper data on NCBI Short Read Archive
+								|
+								V
+							Obtain in a format that will work for subsequent steps (ideally fastq)
+								|
+								V
+							Extract the Gal4 reads based on barcode
+								|
+								V
+							Map the reads
+								|
+								V
+							Improve the mapping of the reads
+								|
+								V
+							Preliminary view of mappings
+								|
+								V
+							Peak calling with MACS
+								|
+								V
+							Peaks relative to known genomic features with CEAS
+								|
+								V
+							Filter additional regions
+								|
+								V
+							Compare to published data
+								|
+								V
+							Motif discovery with MEME
+
+						_scroll in window to see full list_
+					</script>
+				</section>
+
+				<section data-transition="slide" data-background="#4d7e65" data-background-transition="zoom">
+					ChIP-exo<br>
+					<img data-src="images/ChIP-exo_method.png" alt="method" width="40%" height="40%">
+					<br>
+					from <a href="http://www.ncbi.nlm.nih.gov/pubmed/22153082">Rhee HS and Pugh BF (2011) Comprehensive Genome-wide Protein-DNA Interactions Detected at Single-Nucleotide Resolution. Cell 147(6):1408-19. PMID: 22153082. </a>
+					<small>Right click on image and open in new tab to see nicely.</small>
+
+				</section>
+
+
+
+
+				<section data-markdown>
+					<script type="text/template">
+						ChIP-exo
+
+						> Uncrosslinked nonspecific DNA is largely eliminated by exonuclease treatment, as evidenced by the repeated failure to generate a ChIP-exo library from a negative control BY4741 strain. Therefore, use of an exonuclease makes comparisons to input DNA or mock IP moot, in that such DNA is destroyed.
+
+						[Rhee HS and Pugh BF (2011) Comprehensive Genome-wide Protein-DNA Interactions Detected at Single-Nucleotide Resolution. Cell 147(6):1408-19](http://www.ncbi.nlm.nih.gov/pubmed/22153082)
+
+					</script>
+				</section>
+
+				<section data-markdown>
+					<script type="text/template">
+						###Typical results
+
+						[figure 1 or Rhee and Pugh, 2011](http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3243364/figure/F1/)
+						http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3243364/figure/F1/
+
+					</script>
+				</section>
+
+				<section data-markdown>
+					<script type="text/template">
+						###Time to begin
+
+						[Let's go](http://fenglabwkshopmay2015.readthedocs.org/en/latest/condensed%20initial%20steps%20for%20today/)
+
+					</script>
+				</section>
+
+				<section data-markdown>
+					<script type="text/template">
+						###Gal4 results
+
+						[figure 3 of Rhee and Pugh, 2011 illustrates can be used to determine motifs](http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3243364/figure/F3/)
+
+						Figure 3. Genome-wide Identification of Gal4-Bound Locations from Rhee and Pugh, 2011
+
+						http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3243364/figure/F3/
+
+					</script>
+				</section>
+
+
+				<section data-transition="slide" data-background="#4d7e65" data-background-transition="zoom">
+					our results<br>
+					<img data-src="images/Meme_results.png" alt=our results" >
+					<br>
+
+
+				</section>
+
+				<section data-markdown>
+					<script type="text/template">
+						###Gal4 results
+
+						[figure 3 of Rhee and Pugh, 2011 illustrates can be used to determine motifs](http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3243364/figure/F3/)
+
+						Figure 3. Genome-wide Identification of Gal4-Bound Locations from Rhee and Pugh, 2011
+
+						http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3243364/figure/F3/
+
+					</script>
+				</section>
+
+				<section data-transition="slide" data-background="#4d7e65" data-background-transition="zoom">
+					Gal4 site worked out by Ptashne and colleagues by binding assays <br>
+					<img data-src="images/Liang_et_al_1996_showing_GAL4_DNA_binding site.png" alt="binding site" width="30%" height="30%">
+					<br>
+					from <a href="http://www.ncbi.nlm.nih.gov/pubmed/8668194">DNA sequence preferences of GAL4 and PPR1: how a subset of Zn2 Cys6 binuclear cluster proteins recognizes DNA. Liang SD, Marmorstein R, Harrison SC, Ptashne M. Mol Cell Biol. 1996 Jul;16(7):3773-80. PMID: 8668194. </a>
+					<small>Right click on image and open in new tab to see nicely.</small>
+
+				</section>
+
+
+
+				<section data-transition="slide" data-background="#000000" data-background-transition="zoom">
+					ChIP-exo<br>
+					<img data-src="images/1d66_rock_movie.gif" alt="1d66" width="60%" height="60%">
+					<small>Right click on image and open in new tab to see nicely.</small>
+					<br>
+
+
+				</section>
+
+				<section data-transition="slide" data-background="#000000" data-background-transition="zoom">
+					ChIP-exo<br>
+					<img data-src="images/1d66_static.png" alt="1d66" width="60%" height="60%">
+					<br>
+
+
+				</section>
+
+				<section data-markdown>
+					<script type="text/template">
+						[JSmol of the structural basis of DNA binding by Gal4p](http://proteopedia.org/wiki/index.php/User:Wayne_Decatur/Gal_4)
+					</script>
+				</section>
+
+
+
+
+				<section data-markdown>
+					<script type="text/template">
+						###Workshop
+
+						[Link](http://fenglabwkshopmay2015.readthedocs.org/en/latest/)
+
+					</script>
+				</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+				<section style="text-align: left;">
+					<h1>THE END</h1>
+					<p>
+
+					</p>
+				</section>
+
+
+
+
+
+
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
